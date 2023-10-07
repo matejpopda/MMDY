@@ -1,0 +1,101 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+\begin{document}
+
+\section{Tenzory}
+
+Nechť $V$ je vektorový prostor nad $T$. 
+
+Tenzorem typu $p,q$ a řádu $p+q$, $p,q\in\mathbb{N}_0$ rozumíme $(p+q)$-lineární formu\\
+$\mathbb{T}: V^\star \times V^\star \times ... \times V^\star \times V \times ... \times V \mapsto \mathbb{R}$\\
+($V^\star$ tam je $p$-krát, $V$ tam je $q$-krát)\\
+$V^\star$ je prostor všech lineárních funkcionálů na $V$.
+
+Alternativně
+$\mathbb{T} \in V^\star \otimes V^\star \otimes ... \otimes V^\star \otimes V \otimes ... \otimes V $
+
+
+\begin{example}
+    Tenzor typu $(1, 0)$ je $\mathbb{T}: V^\star \mapsto \mathbb{R}$.\\
+    $\mathbb{T}(\varphi) = \varphi(\vec{v})$ z Rieszovy věty to je vektor.
+
+    Tenzor typu $(0 ,1)$ je $\mathbb{T} \equiv \varphi: V \mapsto \mathbb{R}$. To je lineární funkce ("Kovektor")
+\end{example}
+
+\begin{definition}
+    Pokud $q=0$, pak vektor $\mathbb{T}$ typu $(p,q)$ nazýváme kontravariantní. Pokud $p=0$, pak $T$ je kovariantní.
+\end{definition}
+
+
+Proč kovariantní / kontravariantní? 
+
+Nechť $V = \mathbb{R}^n, \mathcal{X}, \mathcal{Y}$ jsou báze $\mathbb{R}^n$.
+
+$\mathcal{X} = (\vec{x}_1, ... , \vec{x}_n)$\\
+$\mathcal{Y} = (\vec{y}_1, ... , \vec{y}_n)$
+
+$\vec{y}_i = \sum \alpha_{ij} \vec{x}_j$ tj. $(\vec{y}_1 ... \vec{y}_n) = (\vec{x}_1 ... \vec{x}_n) \mathbb{A}$, kde $\mathbb{A} = (\alpha_{ij})$
+
+Nechť $\vec{v}\in V = \mathbb{R}^n$ a zajímá nás matice přechodu $^\mathcal{X}\mathbb{P}^\mathcal{Y}$, tj.\\
+$\lceil\vec{v}\rceil_\mathcal{Y} = ^\mathcal{X}\mathbb{P}^\mathcal{Y} \lceil\vec{v}\rceil_\mathcal{X} $.\\
+$\vec{v} = (\vec{y}_1, ... , \vec{y}_n) \lceil\vec{v}\rceil_\mathcal{Y} =
+ (\vec{x}_1 ... \vec{x}_n) \mathbb{A}\lceil\vec{v}\rceil_\mathcal{Y} =
+ (\vec{x}_1 ... \vec{x}_n) \lceil\vec{v}\rceil_\mathcal{X}$
+
+ Z toho máme $\mathbb{A}\lceil\vec{v}\rceil_\mathcal{Y} = \lceil\vec{v}\rceil_\mathcal{X} $, tedy 
+ $\lceil\vec{v}\rceil_\mathcal{Y} = \mathbb{A}^{-1} \lceil\vec{v}\rceil_\mathcal{X} $.\\
+ Z toho máme $^\mathcal{X}\mathbb{P}^\mathcal{Y} = \mathbb{A}^{-1}$
+
+
+Nechť naopak $\uvec{\varphi} \in V^\star, \vec{v}\in V$
+
+$\mathcal{X}^\star = (\uvec{x}_1, ... , \uvec{x}_n)$\\
+$\mathcal{Y}^\star = (\uvec{y}_1, ... , \uvec{y}_n)$
+
+platí $\vec{v} = \sum \uvec{x}^k (\vec{v}) \vec{x}_k$, kde $\uvec{x}^k$ je k-tý souřadnicový funkcionál.
+
+$\uvec{\varphi} (\vec{v}) = \uvec{\varphi} (\sum \uvec{x}^k (\vec{v}) \vec{x}_k) = (\sum \uvec{\varphi} (\vec{x}_k) \uvec{x}^k) (\vec{v})$.
+
+Z toho máme $\lceil\uvec{\varphi}\rceil_{\mathcal{Y}^\star} = \mathbb{A}\lceil\uvec{\varphi}\rceil_{\mathcal{X}^\star}$
+
+$\uvec{\varphi}$
+
+Obecně označíme jako $\lceil \mathbb{T} \rceil_\mathcal{X} \in T^{p+q}$ jako číselnou reprezentaci tenzoru $\mathbb{T}$ v bázi $\mathcal{X}$.
+Pokud bude jasné o kterou bázi jde, označíme $\hat{\mathbb{T}}$
+
+\subsection{Eisteinovo sumační pravidlo}
+Nechť $\mathbb{R},\mathbb{S},\mathbb{T}$ jsou tenzory.\\
+$\hat{\mathbb{R}} = (e^i_{klm})$\\
+$\hat{\mathbb{S}} = (\sigma^{ij}_{kl})$\\
+$\hat{\mathbb{T}} = (\tau^{jm})$
+
+Pak platí $e^i_{klm} = \sum_{j=1}^n \sigma^{ij}_{kl} \tau_{jm} \coloneq \sigma_{kl}^{ij} \tau_{jm}$.\\
+Tedy automaticky sčítáme přes index který se objevuje 2krát. 
+
+\begin{example}
+    $\mathbb{T}$ typu (1,2) aplikujeme na $\uvec{u}, \vec{v}, \vec{u} \in V^\star \times V^2$.
+
+    Pak $\mathbb{T} (\uvec{u}, \vec{v}, \vec{u} ) = \tau^i_{jk} u_i v^j w^k $
+\end{example}
+
+\begin{definition}
+    Pro tenzory $\mathbb{S}, \mathbb{T}$ máme $\mathbb{U} = \mathbb{S} \otimes \mathbb{T} \implies \hat{\mathbb{U}} = 
+    (\sigma_k^{ij} \tau_m^l) = u^{ijl}_{km}$
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

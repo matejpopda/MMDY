@@ -1,0 +1,239 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+\begin{document}
+
+
+\subsubsection{Symetrie tenzoru napětí}
+
+\begin{multline}
+    \frac{d}{dt}\int_{\gamma(t)} (\vec{x} - \vec{x}_0 \varrho \vec{v} d\vec{x}) =\\
+    \int_{\gamma(t)} \varrho (\vec{x}-\vec{x}_0) \times \vec{F} d\vec{x} + 
+    \varepsilon_{ijk} \vec{e}_i \int_{\gamma(t)} (tau_{kj} + (x_j - x_{o,j}) \partial_l \tau_{kl}) d\vec{x}
+\end{multline}
+
+Rozeberme první člen pomocí RTT
+
+\begin{multline}
+    \frac{d}{dt}\int_{\gamma(t)} (\vec{x} - \vec{x}_0 \varrho \vec{v} d\vec{x}) =\\
+    \int_{\gamma(t)} \varrho \frac{D}{Dt} ((\vec{x} - \vec{x}_0 \times \vec{V}))=\\
+    \int_{\gamma(t)} \varrho \left( \frac{D (\vec{x} - \vec{x}_0)}{D_t}\times \vec{V} + (\vec{x} - \vec{x}_0) \times \frac{D\vec{V}}{Dt} \right) =\\
+    \int_{\gamma(t)} \varrho \left( 0 + (\vec{x} - \vec{x}_0) \times \frac{D\vec{V}}{Dt} \right) =\\
+    \int_{\gamma(t)} \varrho (\vec{x} - \vec{x}_0) \times \frac{D\vec{V}}{Dt} d\vec{x}
+\end{multline}
+
+Využili jsme
+\begin{equation*}
+    \frac{D (\vec{x} - \vec{x}_0)}{D_t}\times \vec{V} =     \frac{D \vec{x} }{D_t}\times \vec{V} =
+    \vec{V} \times \vec{V} = \vec{0} 
+\end{equation*}
+
+
+
+Následně škálujeme $\gamma(t)$ s faktorem $\varepsilon$ ve všech rozměrech podle bodu $\vec{x}_0$
+\begin{equation}
+    \gamma(t)_\varepsilon = \{ \vec{x}_0 + \varepsilon(\vec{x} - \vec{x}_0) | \vec{x} \in \gamma(t) \}
+\end{equation}
+
+integrujeme přes $\gamma(t)_\varepsilon$ místo $\gamma(t)$ a $\varepsilon \rightarrow 0$, po vydělení zbývá jediný člen,
+který nejde k 0 (protože nezávisí na $(\vec{x} - \vec{x}_0)$) a to po vydělení $\varepsilon^3$ je
+\begin{equation}
+    \frac{1}{\varepsilon^3} \varepsilon_{ijk} \vec{e}_i \int_{\gamma(t)_\varepsilon} \tau_{kj} d\vec{x}
+\end{equation}
+v limitě $\varepsilon \rightarrow 0$
+\begin{equation}
+    |\gamma(t)|\varepsilon_{ijk} \vec{e}_i \tau_{kj} (\vec{\xi})
+\end{equation}
+
+Platí 
+$\varepsilon_{ijk} \vec{e}_i \tau_{kj} (\vec{x}_0) = 0$
+
+Tento člen se rovná 0. Po složkách. 1. složka
+\begin{equation}
+    \varepsilon_{ijk}\tau_{jk} = 0
+\end{equation}
+\begin{equation}
+    \tau_{23} = \tau_{32}
+\end{equation}
+
+Analogicky z 2. a 3. složky
+\begin{equation}
+    \tau_{13} = \tau_{31}, \tau_{12} = \tau{21}
+\end{equation}
+
+Z toho 
+\begin{equation}
+    \mathbb{T} = \mathbb{T}^T
+\end{equation}
+
+Interpretace je, že síly nezpůsobují roztáčení libovolně malého elementu $d\gamma$
+
+
+\subsubsection{Rovnice bilance hybnosti v obecném tvaru}
+
+\begin{equation}
+    \frac{d}{dt} \int_{\gamma(t)} \varrho \vec{V} d\vec{x} = \int_{\gamma(t)} \varrho \vec{F} d\vec{x} + \int_{\partial \gamma (t)}  \vec{T}(t,\vec{x}, \vec{n}) dS 
+\end{equation}
+
+po složkách
+\begin{equation}
+    \frac{d}{dt} \int_{\gamma(t)} \varrho V_i d\vec{x} = \int_{\gamma(t)} \varrho F_i d\vec{x} + \int_{\partial \gamma (t)}  T_i(t,\vec{x}, \vec{n}) dS 
+\end{equation}
+
+Použijeme RTT \todo{dopsat co to je, na víc místech}
+
+\begin{equation}
+    int_{\gamma(t)} \varrho \frac{D V_i}{Dt} d\vec{x} = \int_{\gamma(t)} \varrho F_i d\vec{x} + \int_{\partial \gamma (t)}  \tau_{ij} n_j dS 
+\end{equation}
+
+
+Alternativně přes RTT
+\begin{equation}
+    \int_{\gamma(t)} \frac{\partial}{\partial t} (\varrho V_i) + \nabla \cdot (\varrho V_i \vec{V}) d\vec{x} = \int_{\gamma(t)} \partial_j \tau_{ij} + \varrho F_i d\vec{x}
+\end{equation}
+
+Protože $\gamma(t)$ je libovolně, rovnají se vnitřky integrálů
+
+\begin{equation}
+     \frac{\partial}{\partial t} (\varrho V_i) + \nabla \cdot (\varrho V_i \vec{V}) =  \partial_j \tau_{ij} + \varrho F_i 
+\end{equation}
+
+To je zákon zachování hybnosti v diferenciálním (konzervativním) tvaru, můžeme přejít zpátky k vektorům
+
+\begin{equation}
+    \frac{\partial(\varrho \vec{V})}{\partial t} + \nabla \cdot (\varrho \vec{V} \otimes \vec{V}) = \nabla \cdot \mathbb{T} + \varrho \vec{F}
+\end{equation}
+
+
+\subsection{Určení tvaru tenzoru tlaku}
+
+\subsubsection{Jednoduché tekutiny}
+\begin{equation}
+    \mathbb{T} = - P \mathbb{I} + \mathbb{T}_D
+\end{equation}
+
+$P$ je hydrostatický (termodynamický) tlak, $\mathbb{T}_D$ je dynamický tenzor napětí (tenzor viskózního napětí)
+
+Pokud    $\mathbb{T}_D = 0 \Leftrightarrow \vec{V} = 0 $ a derivace jsou $\vec{V}$ jsou 0.
+
+
+Zákon zachování hybnosti pro jednoduché tekutiny
+\begin{equation}
+    \varrho \frac{D\vec{V}}{Dt} = -\nabla P + \nabla \cdot \mathbb{T}_D + \varrho \vec{F}
+\end{equation}
+
+Druhý člen jsme získali z
+\begin{equation}
+    \nabla\cdot(P\mathbb{I}) = (\partial_j (P \delta_{ij})) =  \partial_i P = \nabla P
+\end{equation}
+
+\subsubsection{Newtonovské tekutiny a Navierovy-Stokesovy rovnice}
+
+$\mathbb{T}_D$ závisí na rychlostech $\vec{V}$ a jejích derivacích.
+
+Definujme objektivní veličiny.
+
+Ty by měly být stejné pro všechny pozorovatele, z toho máme $\vec{x}' = \vec{A}(t) + Q(t) \vec{x}$, $Q$ ortogonální.
+
+Pak říkáme, že veličiny jsou objektivní právě pokud 
+\begin{itemize}
+    \item $\alpha(\vec{x}) = \alpha' (\vec{x}')$ pro skalár $\alpha$
+    \item $||\vec{\alpha} (\vec{x})|| = ||\vec{\alpha}' (\vec{x}')||$ pro vektor $\vec{\alpha}$
+\end{itemize}
+Tenzorové pole $\mathbb{M}$ je objektivní právě když platí 
+
+$(\mathbb{M} \vec{\alpha})' = \mathbb{M}' \vec{\alpha}'$, označme $\vec{\alpha} = \vec{y} - \vec{x}$  a$\vec{\alpha}' = \vec{y}' - \vec{x}'$ 
+
+Pak 
+$Q(\mathbb{M} \vec{\alpha}) = \mathbb{M}' Q \vec{\alpha}$ a $\mathbb{M} \vec{\alpha} = Q^T \mathbb{M}' Q \vec{\alpha}$.
+
+Tedy $\vec{\alpha}' = Q \vec{\alpha}$
+
+Newtonovská tekutina splňuje
+
+\begin{itemize}
+    \item Závislost $\mathbb{T}_D$ na složkách $\mathbb{D}$ je lineární
+    \item Tekutina je izotropní, bez vnitřní struktury.
+\end{itemize}
+
+Druhý bod znamená
+\begin{equation}
+    \mathbb{T}_D'(\mathbb{D}) =Q^T \mathbb{T} (\mathbb{D}) Q = \mathbb{T}_D (\mathbb{D}') = \mathbb{T}_D (Q^T \mathbb{D} Q) 
+\end{equation}, zřejmě $\mathbb{D}$ je izotropní funkce sebe sama a stejně tak $\mathbb{D}^n$:
+\begin{equation}
+    Q^T \mathbb{D}' Q = Q^T \mathbb{D} Q Q^T \mathbb{D} Q \dots = (Q^T \mathbb{D} Q)^n 
+\end{equation}
+
+Pokud uvažujeme závislost 
+$\mathbb{T}_D (\mathbb{D}) = \sum_{n=0}^N \tilde{\alpha_n} \mathbb{D}^n$, 
+kde $\tilde{\alpha}_n = \tilde{\alpha}_n (_\mathbb{D} \mathbb{I}_1, _\mathbb{D} \mathbb{I}_2, _\mathbb{D} \mathbb{I}_3)$, to jsou BÚNO hlavní invariaanty $\mathbb{D}$.
+
+
+Protože platí Hamiltonova-Cayleyho věta, tj. 
+\begin{equation}
+    \mathbb{D}^3 + _\mathbb{D} \mathbb{I}_1 \mathbb{D} ^2 + _\mathbb{D} \mathbb{I}_2 \mathbb{D} + _\mathbb{D} \mathbb{I}_3 \mathbb{I} = 0 
+\end{equation}
+
+Tak lze $\mathbb{D}^3$ vypočítat pomocí $\mathbb{D}, \mathbb{D}^2$ lineární kombinací a indukcí nakonec i $\mathbb{D}^n$ lze vypočítat lineární kombinací předchozích členů.
+
+Z toho plyne závislost $\mathbb{T}_D (\mathbb{D}) = \sum_{n=0}^N \tilde{\alpha}_n (_\mathbb{D} \mathbb{I}_1, _\mathbb{D} \mathbb{I}_2, _\mathbb{D} \mathbb{I}_3) \mathbb{D}^n$
+je stejně  obecné jako $\mathbb{T}_D = \alpha_0 \mathbb{I} + \alpha_1 \mathbb{D} + \alpha_2 \mathbb{D}^2$, kde $\alpha_{1,2,3}$ jsou funkcemi invariantů.
+
+
+Protože navíc chceme lineární závislost a 
+\begin{itemize}
+    \item $_\mathbb{D} \mathbb{I}_1 = Tr \mathbb{D}$
+    \item $_\mathbb{D} \mathbb{I}_2 = \frac{1}{2} (Tr \mathbb{D})^2 - Tr(\mathbb{D}^2)$
+    \item $_\mathbb{D} \mathbb{I}_3 = \det \mathbb{D}$
+\end{itemize}
+
+tak $\alpha_0$ může být lineární funkcí invariantu $_\mathbb{D} \mathbb{I}_1$, máme
+\begin{itemize}
+    \item $\alpha_0 = \mu ' Tr \mathbb{D}$
+    \item $\alpha_1 = konst = 2\mu$
+    \item $\alpha_2 = 0$
+\end{itemize}
+
+Z toho \begin{equation}
+    \mathbb{T}_D = \mu' Tr \mathbb{D} \mathbb{I} + 2 \mu \mathbb{D}
+\end{equation}
+Z toho
+\begin{equation}
+    \mathbb{D} = \frac{1}{2}(\partial_i V_j + \partial_j V_i)
+\end{equation}
+\begin{equation}
+    Tr \mathbb{D} = \partial_i V_i = \nabla\cdot \vec{V}
+\end{equation}
+
+
+A tedy \begin{equation}
+    \mathbb{T}_D  = \left( \mu' \partial_k V_k \cdot \delta_{ij} + \mu (\partial_i V_j + \partial_j V_i)      \right)
+\end{equation}
+
+$\mu$ je koeficient dynamické viskozity, $\mu'$ je druhý viskózní koeficient
+
+
+
+Dosazením tohoto tvaru $\mathbb{T}_D$ do zákona zachování hybnosti dostáváme Navierovy-Stokesovy rovnice pro stlačitelné a vazké proudění 
+\begin{equation}
+    \varrho\frac{D\vec{V}}{Dt} = - \nabla P + \nabla \cdot \mathbb{T}_D + \varrho \vec{F}
+ \end{equation}
+
+
+Speciální případy:
+\begin{enumerate}
+    \item nevazké proudění, $\mu,\mu' = 0$ dostaneme Eulerovy rovnice $\varrho \frac{D\vec{V}}{Dt} = -\nabla P + \varrho \vec{F}$ 
+    \item Nestlačitelné proudění \begin{equation}
+        |\gamma_0| = \int_{\gamma_0} 1 d\vec{X} != \int_{\gamma(t)} 1 d\vec{x} = \int_{\gamma_0} |det \mathbb{F}| d\vec{X} \implies |\det \mathbb{F} (t,\vec{X})|= 1 \text{ vždy}
+    \end{equation} z toho \begin{equation}
+        d 
+    \end{equation}
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}
